@@ -64,10 +64,21 @@ const PROJECTS = [
 
 const EXPERIENCE = [
   {
+    role:             'Student Research Lead',
+    company:          'National University Laguna',
+    location:         'Milagrosa, Calamba, Laguna',
+    date_range:       'April 2024 – May 2026',
+    responsibilities: [
+      'Designed a dual-branch VGG16-based CNN fusing leaf and bark image modalities, achieving 99% classification accuracy on held-out test data across multiple Dipterocarp species.',
+      'Applied transfer learning, data augmentation, and ensemble strategies on a small, field-collected dataset; evaluated robustness using precision, recall, and F1-score',
+      'Led a four-member research team coordinating dataset curation, model versioning, and IEEE-formatted manuscript preparation.',
+    ],
+  },
+  {
     role:             'Freelance ML Engineer',
-    company:          'ArcLight (Independent)',
+    company:          'Freelance',
     location:         'Los Baños, Laguna',
-    date_range:       '2026',
+    date_range:       'March 2026 - May 2026',
     responsibilities: [
       'Designed and implemented an edge-AI face recognition pipeline using YOLOv5 and ArcFace.',
       'Optimized inference for deployment on Raspberry Pi hardware with limited compute.',
