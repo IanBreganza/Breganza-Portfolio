@@ -67,7 +67,7 @@ const EXPERIENCE = [
     role:             'Freelance ML Engineer',
     company:          'ArcLight (Independent)',
     location:         'Los Baños, Laguna',
-    date_range:       '2025',
+    date_range:       '2026',
     responsibilities: [
       'Designed and implemented an edge-AI face recognition pipeline using YOLOv5 and ArcFace.',
       'Optimized inference for deployment on Raspberry Pi hardware with limited compute.',
@@ -171,7 +171,7 @@ function loadExperience() {
   const html = EXPERIENCE.map(exp => {
     const duties = (exp.responsibilities || [])
       .map(r => `<li class="flex items-start gap-2 text-text-secondary text-sm">
-                   <span class="text-accent mt-1 shrink-0">▸</span>
+                   <span class="text-accent shrink-0">▸</span>
                    <span>${r}</span>
                  </li>`)
       .join('');
