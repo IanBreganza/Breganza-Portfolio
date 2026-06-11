@@ -120,7 +120,7 @@ body::before {
 }
 .timeline-dot {
   position: absolute;
-  left: 11px; /* Centered on 20px line: 20 - (18/2) = 11 */
+  left: 12px; /* Centered on 20px line: 20 - (18/2) = 11 */
   top: 22px;
   width: 18px;
   height: 18px;
