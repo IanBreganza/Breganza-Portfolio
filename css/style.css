@@ -171,6 +171,7 @@ body::before {
   overflow-x: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  padding-top: 6px;
 }
 
 .section-scroll-wrapper::-webkit-scrollbar { display: none; }
