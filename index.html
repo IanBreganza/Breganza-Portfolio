@@ -93,10 +93,10 @@
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!--  HERO                                                       -->
 <!-- ═══════════════════════════════════════════════════════════ -->
-<section id="hero" class="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
-  <!-- Ambient orbs -->
-  <div class="orb w-96 h-96 bg-accent opacity-5 -top-32 -left-32"></div>
-  <div class="orb w-80 h-80 bg-blue opacity-5 top-1/2 -right-24" style="animation-delay:2s"></div>
+<section id="hero" class="relative min-h-screen flex items-center justify-center px-6 pt-20" style="clip-path:inset(0 0 -35vh 0)">
+  <!-- Ambient orbs — sized relative to viewport -->
+  <div id="orb-green" class="orb bg-accent" style="width:clamp(195px,28.5vw,390px);height:clamp(195px,28.5vw,390px);top:0;left:-8vw;"></div>
+  <div id="orb-blue"  class="orb bg-blue"   style="width:clamp(180px,25.5vw,360px);height:clamp(180px,25.5vw,360px);top:40%;right:-8vw;animation-delay:2s;"></div>
 
   <div class="relative z-10 max-w-4xl mx-auto text-center">
     <!-- Avatar -->
@@ -130,12 +130,12 @@
     </div>
 
     <!-- Scroll hint -->
-    <div class="mt-16 flex flex-col items-center gap-2 text-text-muted text-xs animate-pulse-slow">
+    <a href="#about" class="mt-16 flex flex-col items-center gap-2 text-text-muted text-xs animate-pulse-slow hover:text-accent transition-colors duration-200 cursor-pointer">
       <span>Scroll to explore</span>
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
       </svg>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -276,15 +276,16 @@
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!--  PROJECTS                                                   -->
 <!-- ═══════════════════════════════════════════════════════════ -->
-<section id="projects" class="py-24 px-6">
-  <div class="max-w-6xl mx-auto">
+<section id="projects" class="min-h-screen py-24 px-6 relative flex flex-col" style="clip-path:inset(-30vh -10vw 0 0)">
+  <div class="section-orb bg-accent opacity-5" style="width:clamp(200px,28vw,340px);height:clamp(200px,28vw,340px);top:-20px;right:-5vw;animation-delay:1s;"></div>
+  <div class="max-w-6xl mx-auto w-full flex flex-col flex-1">
     <div class="reveal">
       <p class="text-accent text-xs font-display tracking-widest uppercase mb-3">Projects</p>
       <h2 class="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">What I've Built</h2>
-      <p class="text-text-secondary mb-12">Selected work — ordered by impact and scope.</p>
+      <p class="text-text-secondary mb-8">Selected work — ordered by impact and scope.</p>
     </div>
 
-    <div id="projects-container" class="reveal">
+    <div id="projects-container" class="reveal flex-1 min-h-0 flex flex-col">
       <!-- Skeleton loaders -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-skeleton">
         <div class="skeleton h-64 rounded-2xl"></div>
@@ -301,14 +302,15 @@
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!--  EXPERIENCE                                                 -->
 <!-- ═══════════════════════════════════════════════════════════ -->
-<section id="experience" class="py-24 px-6">
-  <div class="max-w-4xl mx-auto">
+<section id="experience" class="min-h-screen py-24 px-6 relative flex flex-col" style="clip-path:inset(0 0 -30vh -10vw)">
+  <div class="section-orb bg-blue opacity-5" style="width:clamp(180px,25vw,310px);height:clamp(180px,25vw,310px);bottom:-20px;left:-5vw;animation-delay:3.5s;"></div>
+  <div class="max-w-4xl mx-auto w-full flex flex-col flex-1">
     <div class="reveal">
       <p class="text-accent text-xs font-display tracking-widest uppercase mb-3">Experience</p>
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-text-primary mb-12">Where I've Worked</h2>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-text-primary mb-8">Where I've Worked</h2>
     </div>
 
-    <div id="experience-container" class="reveal relative">
+    <div id="experience-container" class="reveal flex-1 min-h-0 flex flex-col relative">
       <div class="timeline-line"></div>
       <!-- Skeleton -->
       <div id="experience-skeleton" class="space-y-8 pl-12">
@@ -373,7 +375,8 @@
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!--  CONTACT                                                    -->
 <!-- ═══════════════════════════════════════════════════════════ -->
-<section id="contact" class="py-24 px-6">
+<section id="contact" class="py-24 px-6 relative" style="clip-path:inset(-30vh -10vw 0 0)">
+  <div class="section-orb bg-accent opacity-5" style="width:clamp(120px,16vw,200px);height:clamp(120px,16vw,200px);top:-20px;right:-5vw;animation-delay:2s;"></div>
   <div class="max-w-2xl mx-auto text-center">
     <div class="reveal">
       <p class="text-accent text-xs font-display tracking-widest uppercase mb-3">Contact</p>

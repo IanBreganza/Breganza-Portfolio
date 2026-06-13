@@ -1,3 +1,86 @@
+// ── Breganza gradient synced to orb float ───────────────────────
+function syncBreganzaToOrbs() {
+  const textEl = document.querySelector('#hero .gradient-text');
+  if (!textEl) return;
+
+  let startTime = null;
+  const PERIOD = 8000; // matches orbFloat CSS duration (8s)
+
+  function tick(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const t = timestamp - startTime;
+
+    // CSS orbFloat: 0%/100% = translateY(+30px) bottom, 50% = translateY(-30px) top
+    // Cosine maps this: raw=+1 at bottom (0%,100%), raw=-1 at top (50%)
+    const raw1 = Math.cos((t / PERIOD) * Math.PI * 2);             // green orb
+    const raw2 = Math.cos(((t - 2000) / PERIOD) * Math.PI * 2);   // blue orb (2s delay)
+
+    // Green is at top:0, left:-180px → center y≈260px; text≈520px
+    //   raw1=+1 (bottom, y≈290): closer to text → more green
+    // Blue is at top:45%, right:-180px → center y≈726px; text≈520px
+    //   raw2=-1 (top, y≈696): closer to text → more blue
+    const greenEnd  = 38 + raw1 * 8;    // 30–46%: wider when green is close
+    const blueStart = 62 + raw2 * 12;   // 50–74%: narrower when blue is close (raw2=-1 → 50)
+    const angle     = 135 - raw2 * 15 + raw1 * 10;
+
+    textEl.style.backgroundImage =
+      `linear-gradient(${angle.toFixed(1)}deg, #4ade80 0%, #4ade80 ${greenEnd.toFixed(1)}%, #60a5fa ${blueStart.toFixed(1)}%, #60a5fa 100%)`;
+    textEl.style.webkitBackgroundClip = 'text';
+    textEl.style.backgroundClip      = 'text';
+    textEl.style.webkitTextFillColor  = 'transparent';
+
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+}
+
+// ── Auto-scroll with edge-fade ───────────────────────────────────
+function initAutoScroll(outerEl, scrollEl) {
+  const SPEED      = 0.5;  // px per frame (~30 px/s at 60 fps)
+  const EDGE_PAUSE = 150;  // frames to hold at each end (~2.5 s)
+  let direction = 1;       // 1 = down, -1 = up
+  let edgeHold  = EDGE_PAUSE; // start with a hold so content is readable first
+  let paused    = false;
+
+  function updateFade() {
+    const { scrollTop, scrollHeight, clientHeight } = scrollEl;
+    outerEl.classList.remove('no-scroll', 'at-bottom', 'scrolled-middle');
+    if (scrollHeight <= clientHeight + 5) { outerEl.classList.add('no-scroll'); return; }
+    if (scrollTop + clientHeight >= scrollHeight - 10) outerEl.classList.add('at-bottom');
+    else if (scrollTop > 10)                           outerEl.classList.add('scrolled-middle');
+  }
+
+  function tick() {
+    if (!paused) {
+      if (edgeHold > 0) {
+        edgeHold--;
+      } else {
+        const { scrollTop, scrollHeight, clientHeight } = scrollEl;
+        const atBottom = scrollTop + clientHeight >= scrollHeight - 1;
+        const atTop    = scrollTop <= 0;
+        if (direction === 1 && atBottom)      { direction = -1; edgeHold = EDGE_PAUSE; }
+        else if (direction === -1 && atTop)   { direction =  1; edgeHold = EDGE_PAUSE; }
+        else scrollEl.scrollTop += direction * SPEED;
+      }
+      updateFade();
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const pause        = () => { paused = true; };
+  const resume       = () => { paused = false; };
+  const resumeDelay  = () => { setTimeout(resume, 2000); };
+
+  scrollEl.addEventListener('mouseenter', pause);
+  scrollEl.addEventListener('mouseleave', resume);
+  scrollEl.addEventListener('touchstart', pause,        { passive: true });
+  scrollEl.addEventListener('touchend',   resumeDelay,  { passive: true });
+  scrollEl.addEventListener('scroll',     updateFade);
+
+  requestAnimationFrame(() => { updateFade(); requestAnimationFrame(tick); });
+}
+
 // ── Mobile menu ─────────────────────────────────────────────────
 document.getElementById('mobile-menu-btn').addEventListener('click', () => {
   document.getElementById('mobile-menu').classList.toggle('hidden');
@@ -173,7 +256,17 @@ function loadProjects() {
   const grid = document.createElement('div');
   grid.className = 'grid md:grid-cols-2 lg:grid-cols-3 gap-6';
   grid.innerHTML = html;
-  container.appendChild(grid);
+
+  const scrollEl = document.createElement('div');
+  scrollEl.className = 'section-scroll-wrapper';
+  scrollEl.appendChild(grid);
+
+  const outerEl = document.createElement('div');
+  outerEl.className = 'scroll-fade-outer';
+  outerEl.appendChild(scrollEl);
+
+  container.appendChild(outerEl);
+  initAutoScroll(outerEl, scrollEl);
 }
 
 // ── EXPERIENCE ───────────────────────────────────────────────────
@@ -212,7 +305,17 @@ function loadExperience() {
       </div>`;
   }).join('');
 
-  container.innerHTML = `<div class="timeline-line"></div>${html}`;
+  const scrollEl = document.createElement('div');
+  scrollEl.className = 'section-scroll-wrapper experience-scroll';
+  scrollEl.innerHTML = `<div class="timeline-line"></div>${html}`;
+
+  const outerEl = document.createElement('div');
+  outerEl.className = 'scroll-fade-outer';
+  outerEl.appendChild(scrollEl);
+
+  container.innerHTML = '';
+  container.appendChild(outerEl);
+  initAutoScroll(outerEl, scrollEl);
 }
 
 // ── SKILLS ───────────────────────────────────────────────────────
@@ -336,6 +439,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 });
 
 // ── Init ─────────────────────────────────────────────────────────
+syncBreganzaToOrbs();
 loadProjects();
 loadExperience();
 loadSkills();

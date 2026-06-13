@@ -1,4 +1,8 @@
 /* ── Global ──────────────────────────────────────────────── */
+html {
+  overflow-x: hidden;
+}
+
 body {
   background-color: #0d1117;
   color: #e2e8f0;
@@ -106,8 +110,72 @@ body::before {
   border-radius: 50%;
   filter: blur(80px);
   pointer-events: none;
-  animation: pulse_slow 6s ease-in-out infinite;
+  animation: pulse_slow 6s ease-in-out infinite, orbFloat 8s ease-in-out infinite;
 }
+
+/* ── Section ambient orbs ────────────────────────────────── */
+.section-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  animation: orbFloat 12s ease-in-out infinite;
+}
+
+/* ── Scrollable section with edge fades ──────────────────── */
+.scroll-fade-outer {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-fade-outer::before,
+.scroll-fade-outer::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 120px;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.4s ease;
+}
+
+.scroll-fade-outer::before {
+  top: 0;
+  background: linear-gradient(to bottom, #0d1117 0%, rgba(13,17,23,0.6) 60%, transparent 100%);
+  opacity: 0;
+}
+
+.scroll-fade-outer::after {
+  bottom: 0;
+  background: linear-gradient(to top, #0d1117 0%, rgba(13,17,23,0.6) 60%, transparent 100%);
+  opacity: 1;
+}
+
+.scroll-fade-outer.no-scroll::before,
+.scroll-fade-outer.no-scroll::after { opacity: 0; }
+
+.scroll-fade-outer.at-bottom::after  { opacity: 0; }
+.scroll-fade-outer.at-bottom::before { opacity: 1; }
+
+.scroll-fade-outer.scrolled-middle::before,
+.scroll-fade-outer.scrolled-middle::after { opacity: 1; }
+
+.section-scroll-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.section-scroll-wrapper::-webkit-scrollbar { display: none; }
+
+.experience-scroll { position: relative; }
 
 /* ── Timeline ────────────────────────────────────────────── */
 .timeline-line {
@@ -203,6 +271,11 @@ body::before {
 }
 
 @keyframes pulse_slow {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.5; }
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 0.35; }
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(30px); }
+  50%       { transform: translateY(-30px); }
 }
