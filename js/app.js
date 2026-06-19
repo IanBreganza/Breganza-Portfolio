@@ -116,6 +116,14 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 // ── Hardcoded data ───────────────────────────────────────────────
 const PROJECTS = [
   {
+    title:          'BIOMS — Biodiversity Inventory and Observation Monitoring System',
+    description:    'A web-based system built for the UPLB Metallophytes Research Team to replace their Excel/Word-based field data workflow. Tracks the phenology (flowering and fruiting behavior) of native metallophyte species inside a DMC mining tenement, with features for monthly observation reports, GPS coordinate mapping, species management, and a seed propagation pipeline covering fruit collection, seed extraction, planting, germination tracking, and individual seedling growth monitoring — spanning 4 active mining sites (Dinapigue, Manicani, Tagana-an, Taganito) and the UPLB lab. Role: sole contracted developer, handling the full stack from ERD and database design through to Laravel implementation and deployment.',
+    tech_stack:     ['Laravel', 'PHP', 'MySQL'],
+    priority_score: 9,
+    status:         'in-development',
+    external_link:  null,
+  },
+  {
     title:          'Dipterocarp Species Classifier',
     description:    'A deep-learning system for automated identification of Philippine Dipterocarp tree species from leaf imagery. Built as an undergraduate thesis, it uses a CNN trained on a custom dataset sourced from Mount Makiling\'s forest reserve, achieving high classification accuracy and leveraging Grad-CAM for explainable AI visualizations — turning field photography into a non-invasive alternative to manual tree inventory.',
     tech_stack:     ['Python', 'TensorFlow', 'Keras', 'CNN', 'OpenCV', 'Grad-CAM'],
@@ -146,6 +154,17 @@ const PROJECTS = [
 ];
 
 const EXPERIENCE = [
+  {
+    role:             'Contract Developer',
+    company:          'UPLB — University of the Philippines Los Baños',
+    location:         'Los Baños, Laguna',
+    date_range:       'June 2026 – Present',
+    responsibilities: [
+      'Sole developer contracted by the UPLB Metallophytes Research Team to design and build BIOMS — a full-stack web system replacing their Excel/Word field data workflows.',
+      'Handling the complete development lifecycle: ERD and database schema design, Laravel implementation, and deployment — covering species management, phenology tracking, GPS coordinate logging, and a multi-stage seed propagation pipeline.',
+      'Managing ongoing development across data from 4 active mining sites (Dinapigue, Manicani, Tagana-an, Taganito) and the UPLB lab.',
+    ],
+  },
   {
     role:             'Student Research Lead',
     company:          'National University Laguna',
@@ -239,9 +258,10 @@ function loadProjects() {
            </svg>
          </a>`
       : '';
-    const badge = isFeat
-      ? `<span class="tag tag-green mb-3 inline-block">Featured</span>`
-      : '';
+    const badge = [
+      isFeat                        ? `<span class="tag tag-green mb-3 inline-block">Featured</span>`        : '',
+      p.status === 'in-development' ? `<span class="tag tag-amber mb-3 inline-block">In Development</span>` : '',
+    ].join(' ');
 
     return `
       <div class="card p-6 flex flex-col ${colSpan}">

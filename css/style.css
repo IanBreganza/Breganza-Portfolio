@@ -74,6 +74,12 @@ body::before {
   border-color: rgba(74, 222, 128, 0.2);
 }
 
+.tag-amber {
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.2);
+}
+
 /* ── Section fade-in on scroll ───────────────────────────── */
 .reveal {
   opacity: 0;
