@@ -160,31 +160,20 @@ const EXPERIENCE = [
     location:         'Los Baños, Laguna',
     date_range:       'June 2026 – Present',
     responsibilities: [
-      'Sole developer contracted by the UPLB Metallophytes Research Team to design and build BIOMS — a full-stack web system replacing their Excel/Word field data workflows.',
-      'Handling the complete development lifecycle: ERD and database schema design, Laravel implementation, and deployment — covering species management, phenology tracking, GPS coordinate logging, and a multi-stage seed propagation pipeline.',
-      'Managing ongoing development across data from 4 active mining sites (Dinapigue, Manicani, Tagana-an, Taganito) and the UPLB lab.',
+      'Contracted as sole full-stack developer to design and build BIOMS — a Laravel-based system that replaces Excel/Word field data workflows for the UPLB Metallophytes Research Team.',
+      'Architected the complete data model (ERD and migrations) and implemented modules for species management, monthly phenology observation reports, GPS coordinate logging, and a multi-stage seed propagation pipeline spanning 4 mining sites and the UPLB lab.',
+      'Managing active deployment and iterative development across Dinapigue, Manicani, Tagana-an, and Taganito field sites.',
     ],
   },
   {
-    role:             'Student Research Lead',
-    company:          'National University Laguna',
-    location:         'Milagrosa, Calamba, Laguna',
-    date_range:       'April 2024 – May 2026',
-    responsibilities: [
-      'Designed a dual-branch VGG16-based CNN fusing leaf and bark image modalities, achieving 99% classification accuracy on held-out test data across multiple Dipterocarp species.',
-      'Applied transfer learning, data augmentation, and ensemble strategies on a small, field-collected dataset; evaluated robustness using precision, recall, and F1-score',
-      'Led a four-member research team coordinating dataset curation, model versioning, and IEEE-formatted manuscript preparation.',
-    ],
-  },
-  {
-    role:             'Freelance ML Engineer',
+    role:             'Freelance AI/ML Developer',
     company:          'Freelance',
     location:         'Los Baños, Laguna',
-    date_range:       'March 2026 - May 2026',
+    date_range:       'March 2026 – May 2026',
     responsibilities: [
-      'Designed and implemented an edge-AI face recognition pipeline using YOLOv5 and ArcFace.',
-      'Optimized inference for deployment on Raspberry Pi hardware with limited compute.',
-      'Delivered a working biometric access control demo for a client use case.',
+      'Built and deployed an end-to-end face recognition attendance system on a Raspberry Pi 4, delivering a working production tool that logs attendance automatically via live camera feed.',
+      'Achieved 100% face detection rate (3,941/3,941 test images, 0 misses) using YOLOv5n-Face, and 96.5% face recognition accuracy (99.74% precision, 96.74% recall) across 20 individuals using ArcFace embeddings — validated under varied lighting and occlusion conditions.',
+      'Refactored the pipeline architecture to expose face recognition through backend APIs, enabling integration with a web-based attendance interface requested by the client.',
     ],
   },
   {
@@ -193,9 +182,20 @@ const EXPERIENCE = [
     location:         'UPLB, Los Baños, Laguna',
     date_range:       'Dec 2025 – Feb 2026',
     responsibilities: [
-      'Assisted in the development and maintenance of internal IT systems.',
-      'Contributed to digitization initiatives for forestry research data.',
-      'Collaborated with senior researchers on systems documentation and workflow improvement.',
+      'Built the PNPKI digital certificate management module for ~50 employees — tracking PEM/CERT/P12 expiration dates and automating signature insertion into PDF reports, eliminating manual signing across a 4-signatory approval chain per quarterly report.',
+      'Implemented password security enhancements for the internal project monitoring system.',
+      'Designed and delivered a system onboarding workshop for ~50 senior stakeholders including department heads, executives, and scientists.',
+    ],
+  },
+  {
+    role:             'Student Research Lead',
+    company:          'National University Laguna',
+    location:         'Calamba, Laguna',
+    date_range:       'April 2024 – May 2026',
+    responsibilities: [
+      'Designed and trained a dual-branch VGG16 CNN with a custom self-attention mechanism, fusing leaf venation and bark texture modalities to classify six Dipterocarp species from a 6,160-image field-collected dataset.',
+      'Achieved 99.65% test accuracy (macro F1 0.9964) on the leaf branch and 99.62% (macro F1 0.9965) on the bark branch, using two-stage fine-tuning with class-weighted loss to address dataset imbalance.',
+      'Implemented an energy-based out-of-distribution (OOD) detection module calibrated via Youden\'s J-statistic, validated against domain-adjacent reference sets (BarkVN-50, Leaf Disease Dataset).',
     ],
   },
 ];
