@@ -155,7 +155,7 @@ const PROJECTS = [
 
 const EXPERIENCE = [
   {
-    role:             'Contract Developer',
+    role:             'Contract Software Developer',
     company:          'UPLB — University of the Philippines Los Baños',
     location:         'Los Baños, Laguna',
     date_range:       'June 2026 – Present',
